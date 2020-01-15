@@ -1,6 +1,8 @@
 # Ignore our data files
 data/
 dataset-resized/
+dataset-resized.zip
+.idea/
 
 ## Default gitignore for pytnon from github
 # Byte-compiled / optimized / DLL files
