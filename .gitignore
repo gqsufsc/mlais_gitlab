@@ -3,6 +3,7 @@ data/
 dataset-resized/
 dataset-resized.zip
 .idea/
+.ipynb_checkpoints/
 
 ## Default gitignore for pytnon from github
 # Byte-compiled / optimized / DLL files
