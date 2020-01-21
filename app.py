@@ -153,7 +153,7 @@ def stepThree(data):
     # interp.most_confused(min_val=2)
 
     learn.save("wastesorter/wastesorter",with_opt=True)
-    with open('data/models/wastesorter/wastesorter.pkl', 'wb') as pickle_model:
+    with open('models/wastesorter/wastesorter.pkl', 'wb') as pickle_model:
         pickle.dump(learn, pickle_model)
 
     # learn.load(Path(os.getcwd()) / "data/models/tmp")

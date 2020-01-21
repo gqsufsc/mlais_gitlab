@@ -1,12 +1,10 @@
 # Ignore our data files
-data/classes
-data/test
-data/train
-data/valid
-
+data/
 dataset-resized/
 dataset-resized.zip
+
 .idea
+.idea/workspace.xml
 .ipynb_checkpoints/
 
 ## Default gitignore for pytnon from github

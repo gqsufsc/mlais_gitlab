@@ -1,13 +1,14 @@
 import os
-import pickle
 
-from fastai.vision import models, error_rate, data, cnn_learner
+from fastai.vision import models, error_rate, data, cnn_learner, load_learner
 
-modelsPath = os.getcwd() + '/data/models'
-classesPath = os.getcwd() + '/data/classes/'
+# TODO:: Create this folders if they don't exist
+modelsPath = os.getcwd() + '/models'
+classesPath = os.getcwd() + '/classes/'
 
 ########################################################################################################################
 
+# TODO:: Rename methods
 def LoadClassesLearner(data, classesName, ext):
     return __LoadLearner(data, classesPath + classesName, 'model', ext)
 
@@ -20,6 +21,10 @@ def SaveClassesLearner(className, learner):
 def SaveDefautLearner(name, learner):
     __SaveLearner(modelsPath, name, learner)
 
+def Predict(token, image):
+    # TODO
+    return
+
 ########################################################################################################################
 
 # Save model learner as pkl and pth
@@ -29,25 +34,30 @@ def __SaveLearner(path, name, learner):
     if not os.path.exists(path ):
         os.makedirs(path)
 
-    learner.save(path + '/' + name, with_opt=True)                 # Save *.pth
-    with open(path + '/' + name +'.pkl', 'wb') as pickle_model:
-        pickle.dump(learner, pickle_model)                         # Save *.pkl
+    learner.save(path + '/' + name, with_opt=True)
+    learner.export(path + '/' + name + '.pkl')
 
 # Load model learner
-def __LoadLearner(data, path, name, ext):
-    # TODO :: if pkl ... else
-    learner = cnn_learner(data, models.resnet34, metrics=error_rate)
-    learner.load(path + '/' + name)                                  # *.pth or *.pkl
-    return learner
+def __LoadLearner(data, path, name, extension):
+    # TODO:: split into two methods for load and load_learner
+    if (extension == '.pth'):
+        learner = cnn_learner(data, models.resnet34, metrics=error_rate)
+        learner.load(path + '/' + name)
+        return learner
+
+    return load_learner(path + '/' , name + extension)
 
 # Train model with images from path
-def TrainModel(learner, imgsPath, modelName):
+def __TrainLearner(learner, imgsPath, modelName):
     # TODO
-    learner.save(modelName, return_path=True)
-    learner.export(modelName + '.pkl')
     return learner
 
 # TODO Predict
-def PredictImg(learner, img):
+def __PredictImage(learner, img):
     # TODO
+    # img_data = await request.form()
+    # img_bytes = await (img_data['file'].read())
+    # img = open_image(BytesIO(img_bytes))
+    # prediction = learner.predict(img)[0]
+    # return JSONResponse({'result': str(prediction)})
     return 'error'
