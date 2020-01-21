@@ -1,4 +1,6 @@
 import os
+import secrets
+import shutil
 
 from flask import Flask, render_template
 from fastai.vision import load_learner, models, error_rate, data, create_cnn
@@ -11,7 +13,7 @@ modelsPath = cwd + '/data/models'
 app = Flask(__name__)
 
 # Loading the saved model using fastai's load_learner method
-model = load_learner(modelsPath, 'tmp.pth')
+# model = load_learner(modelsPath, 'tmp.pth')
 # model = load_learner(path, 'model.pkl')
 
 
@@ -30,6 +32,25 @@ def predict():
 
 
 
+# Create a new Class with default model
+def CreateClass(model):
+    # Generate a random token
+    token = secrets.token_hex(3)
+    # TODO: Check if token is new on database else repeat
+
+    # Make a main folder for the class
+    tokenPath = "data/classes/"+token
+    if not os.path.exists(tokenPath):
+        os.makedirs(tokenPath)
+
+        # Make a upload image folder
+        if not os.path.exists(os.path.join(tokenPath, 'upload')):
+            os.makedirs(os.path.join(tokenPath, 'upload'))
+
+        # Copy model
+        src = modelsPath+"/"+model+"/"+model+".pkl"
+        dst = cwd+'/'+tokenPath+'/'+model+".pkl"
+        shutil.copyfile(src, dst)
 
 
 # Load model
@@ -58,12 +79,13 @@ def PredictImg(learner, img):
 
 
 def main():
-    modelName = 'tmp'
+    # modelName = 'tmp'
 
-    learner = LoadLearner(modelName)
-
+    # learner = LoadLearner(modelName)
+    CreateClass('wastesorter')
 
     # Running server
+    print()
     app.run(host='0.0.0.0')
 
 if __name__ == '__main__':

@@ -1,6 +1,7 @@
 import os
 import random
 import shutil
+import pickle
 import zipfile as zf
 import pandas as pd
 import numpy as np
@@ -17,18 +18,18 @@ data = ''
 def notebook():
     ## https://nbviewer.jupyter.org/github/collindching/Waste-Sorter/blob/master/Waste%20sorter.ipynb
     # 1
-    # stepOne()
+    stepOne()
     print('S1')
 
     # 2
-    # stepTwo()
+    stepTwo()
     tfms = get_transforms(do_flip=True, flip_vert=True)
     data = ImageDataBunch.from_folder(path, test="test", ds_tfms=tfms, bs=16)
     print('S2')
 
     # data
     # print(data.classes)
-    # data.show_batch(rows=4, figsize=(10, 8))
+    data.show_batch(rows=4, figsize=(10, 8))
 
     # 3
     leaner = stepThree(data)
@@ -150,7 +151,11 @@ def stepThree(data):
     # doc(interp.plot_top_losses)
     # interp.plot_confusion_matrix(figsize=(12,12), dpi=60)
     # interp.most_confused(min_val=2)
-    learn.load(Path(os.getcwd()) / "data/models/tmp")
+
+    learn.save("wastesorter",with_opt=True)
+    pickle.dump(learn, open("wastesorter.pkl", "wb"))
+
+    # learn.load(Path(os.getcwd()) / "data/models/tmp")
 
 
 # def stepFour(learn):
