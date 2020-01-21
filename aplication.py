@@ -2,91 +2,57 @@ import os
 import secrets
 import shutil
 
-from flask import Flask, render_template
-from fastai.vision import load_learner, models, error_rate, data, create_cnn
+from pathlib import Path
+from fastai.vision import get_transforms, ImageDataBunch, cnn_learner, models, error_rate, ClassificationInterpretation, DatasetType, re
 
-# Saving the working directory and model directory
-cwd = os.getcwd()
-modelsPath = cwd + '/data/models'
-
-# Initializing the FLASK API
-app = Flask(__name__)
-
-# Loading the saved model using fastai's load_learner method
-# model = load_learner(modelsPath, 'tmp.pth')
-# model = load_learner(path, 'model.pkl')
-
-
-# Defining the home page for the web service
-@app.route('/')
-def home():
-    return render_template('upload.html')
-
-# Writing api for inference using the loaded model
-# @app.route('/predict',methods=['POST'])
-
-# Defining the predict method get input from the html page and to predict using the trained model
-def predict():
-    # TODO
-    return render_template('index.html', prediction_text='Prediction Err !!!')
-
-
+import modelCtrl as mdl
+import server
 
 # Create a new Class with default model
 def CreateClass(model):
+    modelsPath = os.getcwd() + '/data/models'
+    classesPath = 'data/classes/'
+
     # Generate a random token
     token = secrets.token_hex(3)
     # TODO: Check if token is new on database else repeat
 
     # Make a main folder for the class
-    tokenPath = "data/classes/"+token
+    tokenPath = classesPath + token
     if not os.path.exists(tokenPath):
         os.makedirs(tokenPath)
-
-        # Make a upload image folder
-        if not os.path.exists(os.path.join(tokenPath, 'upload')):
-            os.makedirs(os.path.join(tokenPath, 'upload'))
+        os.makedirs(os.path.join(tokenPath, 'upload'))
 
         # Copy model
-        src = modelsPath+"/"+model+"/"+model+".pkl"
-        dst = cwd+'/'+tokenPath+'/'+model+".pkl"
-        shutil.copyfile(src, dst)
+        src = modelsPath + '/' + model + '/' + model
+        dst = os.getcwd() + '/' + tokenPath + '/model'
+        shutil.copyfile(src + '.pkl', dst + '.pkl')
+        shutil.copyfile(src + '.pth', dst + '.pth')
 
+def Teste():
 
-# Load model
-def LoadLearner(modelName):
-    # TODO
-    learner = create_cnn(data, models.resnet34, metrics=error_rate)
-    learner.load(modelsPath, modelName + '.pth')    # or *.pkl   -> pickle lib
-    return learner
+    # TODO :: move data inside model folder
+    tfms = get_transforms(do_flip=True, flip_vert=True)
+    data = ImageDataBunch.from_folder(Path(os.getcwd()) / 'data', test='test', ds_tfms=tfms, bs=16)
 
-# Train model with images from path
-def TrainModel(learner, imgsPath, modelName):
-    # TODO
+    # classLearner = mdl.LoadClassesLearner(data, 'adff72', '.pth')
+    modelLearner = mdl.LoadDefaultLearner(data, 'wastesorter', '.pth')
 
-    learner.save(modelName, return_path=True)
-    learner.export(modelName + '.pkl')
+    # learner = cnn_learner(data, models.resnet34, metrics=error_rate)
+    # learner.lr_find(start_lr=1e-6, end_lr=1e1)
 
-    return learner
-
-# Predict
-def PredictImg(learner, img):
-    # TODO
-    return 'error'
-
-
-
-
+    # mdl.SaveDefautLearner('ws', classLearner)
 
 def main():
     # modelName = 'tmp'
 
     # learner = LoadLearner(modelName)
-    CreateClass('wastesorter')
+    # CreateClass('wastesorter')
+
+    Teste()
 
     # Running server
-    print()
-    app.run(host='0.0.0.0')
+    server.app.run(host='0.0.0.0')
 
 if __name__ == '__main__':
     main()

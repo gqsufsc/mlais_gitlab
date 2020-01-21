@@ -18,14 +18,14 @@ data = ''
 def notebook():
     ## https://nbviewer.jupyter.org/github/collindching/Waste-Sorter/blob/master/Waste%20sorter.ipynb
     # 1
-    stepOne()
-    print('S1')
+    # stepOne()
+    # print('S1')
 
     # 2
-    stepTwo()
+    # stepTwo()
     tfms = get_transforms(do_flip=True, flip_vert=True)
     data = ImageDataBunch.from_folder(path, test="test", ds_tfms=tfms, bs=16)
-    print('S2')
+    # print('S2')
 
     # data
     # print(data.classes)
@@ -41,7 +41,7 @@ def notebook():
 
     # Running server
     # app.run(host='0.0.0.0')
-    print('done')
+    # print('done')
 
 
 ## helper functions ##
@@ -142,7 +142,7 @@ def stepThree(data):
 
     # learn.recorder.plot()
 
-    learn.fit_one_cycle(1, max_lr=5.13e-03)
+    # learn.fit_one_cycle(1, max_lr=5.13e-03)
 
     # interp = ClassificationInterpretation.from_learner(learn)
     # losses,idxs = interp.top_losses()
@@ -152,8 +152,9 @@ def stepThree(data):
     # interp.plot_confusion_matrix(figsize=(12,12), dpi=60)
     # interp.most_confused(min_val=2)
 
-    learn.save("wastesorter",with_opt=True)
-    pickle.dump(learn, open("wastesorter.pkl", "wb"))
+    learn.save("wastesorter/wastesorter",with_opt=True)
+    with open('data/models/wastesorter/wastesorter.pkl', 'wb') as pickle_model:
+        pickle.dump(learn, pickle_model)
 
     # learn.load(Path(os.getcwd()) / "data/models/tmp")
 

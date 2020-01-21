@@ -1,4 +1,9 @@
 # Ignore our data files
+data/classes
+data/test
+data/train
+data/valid
+
 dataset-resized/
 dataset-resized.zip
 .idea
