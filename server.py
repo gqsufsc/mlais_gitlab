@@ -1,19 +1,31 @@
-from flask import Flask, render_template
+import os
+import json
+import modelService as ms
+import aplication as app
+
+from flask import Flask, render_template, request
+from werkzeug.utils import secure_filename
 
 # Initializing the FLASK API
-app = Flask(__name__)
+flaskApp = Flask(__name__)
 
-# Defining the home page for the web service
-@app.route('/')
-def home():
-    return render_template('upload.html')
+@flaskApp.route('/', methods=['GET'])
+def index():
+    # Main page
+    return render_template('index.html')
 
-# Writing api for inference using the loaded model
-# @app.route('/predict',methods=['POST'])
+@flaskApp.route('/predict', methods=['GET', 'POST'])
+def upload():
+    if request.method == 'POST':
+        # Get the file from post request
+        f = request.files['file']
 
-# Defining the predict method get input from the html page and to predict using the trained model
-def predict():
-    # TODO
-    return render_template('index.html', prediction_text='Prediction Err !!!')
+        # Save the file to ./upload
+        basepath = os.path.dirname(__file__)
+        file_path = os.path.join(basepath, 'classes/' + app.token + '/upload', secure_filename(f.filename))
+        f.save(file_path)
 
-
+        # Make prediction
+        preds = ms.predict(app.learner, file_path)
+        return json.loads(preds)
+    return None

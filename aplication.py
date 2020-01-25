@@ -1,8 +1,14 @@
+import os
 
+from werkzeug.utils import secure_filename
 from fastai.vision import get_transforms, ImageDataBunch, cnn_learner, models, error_rate, ClassificationInterpretation, DatasetType, re
 
+import modelService as ms
 import classeService as cs
 import server
+
+token = '087aae'
+learner = cs.loadLearner(token)
 
 # TODO:: Definir estratégia para pasta de data default do modelo
 
@@ -41,9 +47,13 @@ def main():
     # cs.createClass('wastesorter')
 
     # Teste()
+    # basepath = os.path.dirname(__file__)
+    # file_path = os.path.join(basepath, 'classes/' + token + '/upload', secure_filename('Screenshot_from_2020-01-15_10-14-47.png'))
+    # ms.predict(learner, file_path)
+
 
     # Running server
-    server.app.run(host='0.0.0.0')
+    server.flaskApp.run(host='0.0.0.0')
 
 if __name__ == '__main__':
     main()

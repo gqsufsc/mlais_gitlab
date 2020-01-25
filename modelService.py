@@ -1,7 +1,9 @@
 import os
+import json
 
+from flask import make_response
 from pathlib import Path
-from fastai.vision import models, error_rate, cnn_learner, get_transforms, ImageDataBunch
+from fastai.vision import models, error_rate, cnn_learner, get_transforms, ImageDataBunch, open_image
 
 # TODO:: Create this folders if they don't exist
 modelsPath = os.getcwd() + '/models/'
@@ -14,9 +16,11 @@ def LoadDefaultLearner(data, modelName, ext):
 def SaveDefautLearner(name, learner):
     __SaveLearner(modelsPath, name, learner)
 
-def Predict(token, image):
-    # TODO
-    return
+def predict(learner, imagePath):
+    # TODO :: checks
+    img = open_image(imagePath)
+    prediction = learner.predict(img)[0]
+    return json.dumps({ "result" : str(prediction) })
 
 def getData(model):
     # TODO :: verifications
@@ -50,13 +54,3 @@ def __LoadPthLearner(data, path, name):
 def __TrainLearner(learner, imgsPath, modelName):
     # TODO
     return learner
-
-# TODO Predict
-def __PredictImage(learner, img):
-    # TODO
-    # img_data = await request.form()
-    # img_bytes = await (img_data['file'].read())
-    # img = open_image(BytesIO(img_bytes))
-    # prediction = learner.predict(img)[0]
-    # return JSONResponse({'result': str(prediction)})
-    return 'error'

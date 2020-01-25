@@ -27,7 +27,7 @@ def predict(token, image):
     # TODO
     return
 
-def upload():
+def upload(token, image):
     # TODO:: acho que não vai ficar aqui
     return
 
@@ -50,7 +50,7 @@ def createClass(model):
         # Copy models
         src = modelsPath + model + '/' + model
         dst = tokenPath + '/' + model
-        shutil.copyfile(src + '.pkl', dst + '.pkl')
+        # shutil.copyfile(src + '.pkl', dst + '.pkl')
         shutil.copyfile(src + '.pth', dst + '.pth')
 
 
