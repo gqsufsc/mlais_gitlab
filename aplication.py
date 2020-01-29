@@ -1,22 +1,12 @@
-import os
-
-from werkzeug.utils import secure_filename
 from fastai.vision import get_transforms, ImageDataBunch, cnn_learner, models, error_rate, ClassificationInterpretation, DatasetType, re
 
-import modelService as ms
-import classeService as cs
+import model_service as ms
+import classe_service as cs
 import server
-
-token = '087aae'
-learner = cs.loadLearner(token)
 
 # TODO:: Definir estratégia para pasta de data default do modelo
 
-def Teste():
-
-    # learner = mdl.LoadDefaultLearner(data, 'wastesorter', '.pkl')
-    # learner = mdl.LoadDefaultLearner(data, 'wastesorter', '.pth')
-
+def teste():
     learner = cs.loadLearner('087aae')
 
     # learner = cnn_learner(data, models.resnet34, metrics=error_rate)
@@ -38,19 +28,9 @@ def Teste():
     interp = ClassificationInterpretation.from_learner(learner) # Não funciona com o load pkl
     print(interp.most_confused(min_val=2))
 
-
-
 def main():
-    # modelName = 'tmp'
-
-    # learner = LoadLearner(modelName)
-    # cs.createClass('wastesorter')
 
     # Teste()
-    # basepath = os.path.dirname(__file__)
-    # file_path = os.path.join(basepath, 'classes/' + token + '/upload', secure_filename('Screenshot_from_2020-01-15_10-14-47.png'))
-    # ms.predict(learner, file_path)
-
 
     # Running server
     server.flaskApp.run(host='0.0.0.0')
