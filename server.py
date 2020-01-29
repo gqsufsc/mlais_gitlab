@@ -19,6 +19,7 @@ def index():
     return render_template('index.html')
 
 
+# TODO: Change route to include token for tests
 @flaskApp.route('/predict', methods=['GET', 'POST'])
 def upload():
     if request.method == 'POST':
@@ -35,3 +36,11 @@ def upload():
         preds = ms.predict(learner, file_path)
         return json.loads(preds)
     return None
+
+
+# TODO:: Upload file for classe (inside a label folder to train later) -> Component request
+# TODO:: Predict -> Component request
+
+# TODO:: Classe page
+# TODO:: Classe uploaded files/train page
+# TODO:: Model page

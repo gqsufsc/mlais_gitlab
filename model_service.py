@@ -22,7 +22,7 @@ def predict(learner: Learner, imagePath: str) -> json:
     return json.dumps({"result": str(prediction)})
 
 
-# Save model learner as pkl and pth
+# Save model learner as pth
 def save_learner(path: str, name: str, learner: Learner) -> None:
     path = path + '/' + name
     # Create folder if it don't exists
@@ -39,6 +39,11 @@ def load_learner(data: ImageDataBunch, path: str, name: str):
 
 
 # Train model with images from path
-def train(learner: Learner, imgPath: str, name: str):
-    # TODO
+def train(learner: Learner, imgPath: str) -> Learner:
+    # TODO:: tests after upload changes
+    learner.data = ImageDataBunch.from_folder(imgPath)
+    learner.fit(1)
     return learner
+
+# TODO:: Add new model + data
+# TODO::

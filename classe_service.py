@@ -27,22 +27,17 @@ def save_learner(className: str, learner: Learner):
 
 # Predict a image classification using the model
 def predict(token:str, image: str) -> json:
-    # TODO
-    return
-
-
-def upload(token: str, image: str) -> None:
-    # TODO
+    # TODO:: call predict from model_service
     return
 
 
 def train(token: str) -> None:
-    # TODO
+    # TODO:: call train from model_service
     return
 
 
 # Create a new Class with default model
-def createClass(model):
+def create_class(model: str) -> None:
     # Generate a random token
     token = secrets.token_hex(3)
     # TODO: Check if token is new on database else repeat
@@ -56,5 +51,4 @@ def createClass(model):
         # Copy models
         src = ms.get_path() + model + '/' + model
         dst = tokenPath + '/' + model
-        # shutil.copyfile(src + '.pkl', dst + '.pkl')
         shutil.copyfile(src + '.pth', dst + '.pth')
