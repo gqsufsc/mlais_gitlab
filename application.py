@@ -16,8 +16,7 @@ def teste():
     # print(interp.most_confused(min_val=2))
 
 def main():
-    # teste()
-    # ts.uploaded_pictures('087aae')
+    # ts.create_turma('wastesorter')
 
     # Running server
     server.flaskApp.secret_key = 'super secret key'

@@ -116,7 +116,8 @@ def list_turmas() -> list:
         splitted = f.split('/')
         splitted.pop()
         list.append(splitted.pop())
-    return folders
+
+    return list
 
 
 def list_classes(turma: str) -> list:

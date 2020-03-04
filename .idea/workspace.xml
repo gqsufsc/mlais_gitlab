@@ -2,21 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="49fb0298-1eb9-4d18-b90a-3f0c20e6fa39" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/static/css/turma.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/js/turmas.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/turma.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/turmas/087aae/upload/can_olives.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/turmas.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aplication.py" beforeDir="false" afterPath="$PROJECT_DIR$/application.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classe_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/turma_service.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/087aae/upload/Screenshot_from_2020-01-15_10-14-47.png" beforeDir="false" afterPath="$PROJECT_DIR$/turmas/087aae/upload/Screenshot from 2020-01-15 10-14-47.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/087aae/upload/metal100.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/turmas/087aae/upload/metal100.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/087aae/upload/plastic14.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/turmas/087aae/upload/plastic14.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/087aae/wastesorter.pth" beforeDir="false" afterPath="$PROJECT_DIR$/turmas/087aae/wastesorter.pth" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/model_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application.py" beforeDir="false" afterPath="$PROJECT_DIR$/application.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/server.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/turmas.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/turma.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/turma.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/turma.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/turma_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/turma_service.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,19 +43,19 @@
     <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/templates" />
+      <recent name="$PROJECT_DIR$/turmas/087aae/tmp" />
+      <recent name="$PROJECT_DIR$/turmas/087aae/upload" />
+      <recent name="$PROJECT_DIR$/static/css" />
+      <recent name="$PROJECT_DIR$/static/js" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/turmas/087aae/upload" />
       <recent name="$PROJECT_DIR$/turmas/087aae/data/train/trash" />
       <recent name="$PROJECT_DIR$/turmas/087aae/data/train/metal" />
       <recent name="$PROJECT_DIR$/turmas/087aae/data/train/plastic" />
       <recent name="$PROJECT_DIR$/turmas/087aae/upload/data/train/plastic" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/turmas/087aae/upload" />
-      <recent name="$PROJECT_DIR$/static/css" />
-      <recent name="$PROJECT_DIR$/templates" />
-      <recent name="$PROJECT_DIR$/static/js" />
-      <recent name="$PROJECT_DIR$/turmas/087aae" />
     </key>
   </component>
   <component name="RunManager">

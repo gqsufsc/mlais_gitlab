@@ -35,11 +35,18 @@ def turma(token: str):
     return render_template('turma.html', turma=token, uploaded=uploaded, eval='')
 
 
+@flaskApp.route('/turmas', methods=['GET'])
+def turmas():
+    turmas = ts.list_turmas()
+    return render_template('turmas.html', turmas=turmas)
+
+
 @flaskApp.route('/train/<token>', methods=['GET'])
 def train(token : str):
     evaluation = ts.train(token)
     # return redirect(url_for('turma', token=token, eval=evaluation))
     return redirect(url_for('turma', token=token, eval=''))
+
 
 @flaskApp.route('/upload/<token>', methods = ['POST'])
 def upload_file(token : str) -> json:
