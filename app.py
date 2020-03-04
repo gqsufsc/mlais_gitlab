@@ -28,7 +28,7 @@ def notebook():
     # print('S2')
 
     # data
-    # print(data.classes)
+    # print(data.turmas)
     data.show_batch(rows=4, figsize=(10, 8))
 
     # 3
@@ -164,14 +164,14 @@ def stepThree(data):
     #
     # print(preds[0].shape)
     # preds[0]
-    # data.classes
+    # data.turmas
 
     ## saves the index (0 to 5) of most likely (max) predicted class for each image
     # max_idxs = np.asarray(np.argmax(preds[0],axis=1))
 
     # yhat = []
     # for max_idx in max_idxs:
-    #     yhat.append(data.classes[max_idx])
+    #     yhat.append(data.turmas[max_idx])
     # yhat
 
     # learn.data.test_ds[0][0]

@@ -1,16 +1,14 @@
 import os
 import json
 
-from flask import Flask, render_template, request
-from werkzeug.utils import secure_filename
+from flask import Flask, render_template, request, flash, jsonify, send_file, url_for
+from werkzeug.utils import redirect
 
-import classe_service as cs
-import model_service as ms
+import turma_service as ts
 
 # Initializing the FLASK API
 flaskApp = Flask(__name__)
-
-token = '087aae'
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 
 
 @flaskApp.route('/', methods=['GET'])
@@ -19,27 +17,66 @@ def index():
     return render_template('index.html')
 
 
-# TODO: Change route to include token for tests
-@flaskApp.route('/predict', methods=['GET', 'POST'])
-def upload():
+@flaskApp.route('/turma/<token>/<name>')
+def get_picture(token: str, name: str):
+    return send_file(ts.get_path() + token + '/upload/' + name, mimetype='image/jpg/png', cache_timeout=0, )
+
+
+@flaskApp.route('/delete/<token>/<picture>', methods=['POST'])
+def delete_picture(token: str, picture: str):
+    # TODO:: Confirm action
+    ts.delete_picture(token, picture)
+    return redirect(url_for('turma', token=token))
+
+
+@flaskApp.route('/turma/<token>', methods=['GET'])
+def turma(token: str):
+    uploaded = ts.uploaded_pictures(token)
+    return render_template('turma.html', turma=token, uploaded=uploaded, eval='')
+
+
+@flaskApp.route('/train/<token>', methods=['GET'])
+def train(token : str):
+    evaluation = ts.train(token)
+    # return redirect(url_for('turma', token=token, eval=evaluation))
+    return redirect(url_for('turma', token=token, eval=''))
+
+@flaskApp.route('/upload/<token>', methods = ['POST'])
+def upload_file(token : str) -> json:
     if request.method == 'POST':
-        # Get the file from post request
-        f = request.files['file']
+        if verifyToken(token) == None :
+            ts.upload(token, request.files['file'])
+            return jsonify({"status":"ok"})
 
-        # Save the file to ./upload
-        basepath = os.path.dirname(__file__)
-        file_path = os.path.join(basepath, 'classes/' + token + '/upload', secure_filename(f.filename))
-        f.save(file_path)
 
-        # Make prediction
-        learner = cs.load_learner(token)
-        preds = ms.predict(learner, file_path)
-        return json.loads(preds)
+@flaskApp.route('/predict/<token>', methods=['POST'])
+def predict(token : str) -> json :
+    if request.method == 'POST':
+        if verifyToken(token) == None:
+            preds = ts.predict(token, request.files['file'])
+            return json.loads(preds)
     return None
 
 
-# TODO:: Upload file for classe (inside a label folder to train later) -> Component request
-# TODO:: Predict -> Component request
+def verifyToken(token : str) -> json :
+    if not os.path.exists(ts.get_path() + token):
+        return jsonify({"error": "invalid token"})
+
+    if 'file' not in request.files:
+        flash('No file part')
+        return jsonify({"error": "file not found"})
+
+    file = request.files['file']
+    if not file and not allowed_file(file.filename):
+        return jsonify({"error": "file format not valid or empty file"})
+
+    return None
+
+
+def allowed_file(filename : str) -> bool:
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
 
 # TODO:: Classe page
 # TODO:: Classe uploaded files/train page
