@@ -1,4 +1,5 @@
 import glob
+import io
 import os
 import secrets
 import shutil
@@ -26,16 +27,13 @@ def new_filename(extension : str) -> str :
         filename = secrets.token_hex(5) + '.' + extension
     return filename
 
-
-# Upload image
-def upload(turma: str, file : any) -> None :
-    path = create_folders(turma)
-    file.save(os.path.join(path + 'tmp/', file.filename))
-
-    filename = secure_filename(file.filename)
-    os.rename(path + '/tmp/' + filename, path + '/upload/' + new_filename(filename.rsplit('.', 1)[1].lower()))
+# Upload image byte[]
+def upload(turma: str, data : bytearray, extension : str) -> None :
+    create_folders(turma) # Create folders if needed
+    file = open(get_path() + turma + '/upload/' + new_filename(extension), 'wb')
+    file.write(io.BytesIO(data).read())
+    file.close()
     return
-
 
 # Load model from turma folder
 def load_learner(turma: str):
@@ -50,16 +48,12 @@ def save_learner(token: str, learner: Learner):
 
 
 # Predict a image classification using the model
-def predict(turma:str, file: any) -> json:
-    path = create_folders(turma)
-    filename = secure_filename(file.filename)
-    imagePath = os.path.join(path + 'tmp/', filename)
-    file.save(imagePath)
+def predict(turma: str, data: bytearray, extension: str) -> json:
+    create_folders(turma) # Create folders if needed
 
     learner = load_learner(turma)
-    predict = ms.predict(learner, imagePath)
+    predict = ms.predict(learner, io.BytesIO(data))
 
-    os.remove(get_path() + turma + '/tmp/' + filename)
     return predict
 
 
@@ -101,10 +95,6 @@ def create_folders(turma: str) -> str:
     path = get_path() + turma + '/'
     if not os.path.exists(path + 'upload/'):
         os.makedirs(path + 'upload/')
-
-    if not os.path.exists(path + 'tmp/'):
-        os.makedirs(path + 'tmp/')
-
     return path
 
 ###############################################################################

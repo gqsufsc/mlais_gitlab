@@ -15,8 +15,8 @@ def get_data(model: str) -> ImageDataBunch:
     return ImageDataBunch.from_folder(Path(get_path() + model + '/data'), test='test', ds_tfms=tfms, bs=16)
 
 
-def predict(learner: Learner, imagePath: str) -> json:
-    img = open_image(imagePath)
+def predict(learner: Learner, data: str) -> json:
+    img = open_image(data)
     prediction = learner.predict(img)[0]
     return json.dumps({"result": str(prediction)})
 

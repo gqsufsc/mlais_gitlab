@@ -51,38 +51,37 @@ def train(token : str):
 @flaskApp.route('/upload/<token>', methods = ['POST'])
 def upload_file(token : str) -> json:
     if request.method == 'POST':
-        if verifyToken(token) == None :
-            ts.upload(token, request.files['file'])
+        extension =  request.headers.get('extension')
+        error = verify(token, extension)
+        if error == None :
+            ts.upload(token, request.get_data(), extension)
             return jsonify({"status":"ok"})
+        else :
+            return jsonify(error)
+    return jsonify({"error": "Not POST method"})
 
 
 @flaskApp.route('/predict/<token>', methods=['POST'])
 def predict(token : str) -> json :
     if request.method == 'POST':
-        if verifyToken(token) == None:
-            preds = ts.predict(token, request.files['file'])
-            return json.loads(preds)
+        extension =  request.headers.get('extension')
+        error = verify(token, extension)
+        if error == None :
+            prediction = ts.predict(token, request.get_data(), extension)
+            return json.loads(prediction)
+        else :
+            return jsonify(error)
     return None
 
 
-def verifyToken(token : str) -> json :
+def verify(token : str, extension) -> json :
     if not os.path.exists(ts.get_path() + token):
-        return jsonify({"error": "invalid token"})
-
-    if 'file' not in request.files:
-        flash('No file part')
-        return jsonify({"error": "file not found"})
-
-    file = request.files['file']
-    if not file and not allowed_file(file.filename):
-        return jsonify({"error": "file format not valid or empty file"})
-
+        return {"error": "invalid token."}
+    if not extension:
+        return {"error": "empty extension format."}
+    if not (extension in ALLOWED_EXTENSIONS):
+        return {"error": "invalid extension."}
     return None
-
-
-def allowed_file(filename : str) -> bool:
-    return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
 # TODO:: Classe page
