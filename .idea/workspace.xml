@@ -2,13 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="49fb0298-1eb9-4d18-b90a-3f0c20e6fa39" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/templates/turmas.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/FastFlask.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/FastFlask.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application.py" beforeDir="false" afterPath="$PROJECT_DIR$/application.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/server.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/turmas.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/turma.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/turma.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/turma.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/turma_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/turma_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/turmas/087aae/tmp/Screenshot from 2020-03-03 21-28-28.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/turmas/087aae/tmp/Screenshot from 2020-03-04 09-01-02.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,7 +29,6 @@
   <component name="ProjectId" id="1W9qD7eZwVDuEbiyZJ9441alJBk" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
   </component>
@@ -40,7 +39,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="TEXT" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/turmas/087aae/tmp" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.project" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -59,22 +58,22 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="app" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="application" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="FastFlask" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="" />
+      <option name="SDK_HOME" value="$PROJECT_DIR$/../FastFlask/venv/bin/python" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/app.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/application.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="EMULATE_TERMINAL" value="true" />
       <option name="MODULE_MODE" value="false" />
       <option name="REDIRECT_INPUT" value="false" />
       <option name="INPUT_FILE" value="" />
@@ -82,21 +81,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.app" />
+        <item itemvalue="Python.application" />
       </list>
     </recent_temporary>
-  </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
-      </list>
-    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -115,41 +102,72 @@
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.js" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="353" y="147" width="1287" height="684" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1587566258299">
+      <screen x="70" y="27" width="1850" height="1053" />
+    </state>
+    <state x="353" y="147" width="1287" height="684" key="#com.intellij.execution.impl.EditConfigurationsDialog/70.27.1850.1053@70.27.1850.1053" timestamp="1587566258299" />
     <state x="655" y="362" width="660" height="397" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1579564658719">
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
     <state x="655" y="362" width="660" height="397" key="#com.intellij.fileTypes.FileTypeChooser/70.27.1850.1053@70.27.1850.1053" timestamp="1579564658719" />
-    <state x="778" y="311" width="424" height="491" key="FileChooserDialogImpl" timestamp="1582567377732">
+    <state x="170" y="127" width="1650" height="853" key="DiffContextDialog" timestamp="1587565880013">
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
-    <state x="778" y="311" width="424" height="491" key="FileChooserDialogImpl/70.27.1850.1053@70.27.1850.1053" timestamp="1582567377732" />
-    <state width="1827" height="274" key="GridCell.Tab.0.bottom" timestamp="1583187662340">
+    <state x="170" y="127" width="1650" height="853" key="DiffContextDialog/70.27.1850.1053@70.27.1850.1053" timestamp="1587565880013" />
+    <state x="781" y="322" width="424" height="491" key="FileChooserDialogImpl" timestamp="1587566820134">
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
-    <state width="1827" height="274" key="GridCell.Tab.0.bottom/70.27.1850.1053@70.27.1850.1053" timestamp="1583187662340" />
-    <state width="1827" height="274" key="GridCell.Tab.0.center" timestamp="1583187662339">
+    <state x="781" y="322" width="424" height="491" key="FileChooserDialogImpl/70.27.1850.1053@70.27.1850.1053" timestamp="1587566820134" />
+    <state width="1827" height="274" key="GridCell.Tab.0.bottom" timestamp="1587567125010">
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
-    <state width="1827" height="274" key="GridCell.Tab.0.center/70.27.1850.1053@70.27.1850.1053" timestamp="1583187662339" />
-    <state width="1827" height="274" key="GridCell.Tab.0.left" timestamp="1583187662339">
+    <state width="1827" height="274" key="GridCell.Tab.0.bottom/70.27.1850.1053@70.27.1850.1053" timestamp="1587567125010" />
+    <state width="1827" height="274" key="GridCell.Tab.0.center" timestamp="1587567125010">
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
-    <state width="1827" height="274" key="GridCell.Tab.0.left/70.27.1850.1053@70.27.1850.1053" timestamp="1583187662339" />
-    <state width="1827" height="274" key="GridCell.Tab.0.right" timestamp="1583187662340">
+    <state width="1827" height="274" key="GridCell.Tab.0.center/70.27.1850.1053@70.27.1850.1053" timestamp="1587567125010" />
+    <state width="1827" height="274" key="GridCell.Tab.0.left" timestamp="1587567125009">
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
-    <state width="1827" height="274" key="GridCell.Tab.0.right/70.27.1850.1053@70.27.1850.1053" timestamp="1583187662340" />
-    <state x="333" y="240" width="1022" height="737" key="SettingsEditor" timestamp="1578688371529">
+    <state width="1827" height="274" key="GridCell.Tab.0.left/70.27.1850.1053@70.27.1850.1053" timestamp="1587567125009" />
+    <state width="1827" height="274" key="GridCell.Tab.0.right" timestamp="1587567125010">
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
-    <state x="333" y="240" width="1022" height="737" key="SettingsEditor/70.27.1850.1053@70.27.1850.1053" timestamp="1578688371529" />
-    <state x="651" y="380" key="com.intellij.ide.util.TipDialog" timestamp="1578572042524">
+    <state width="1827" height="274" key="GridCell.Tab.0.right/70.27.1850.1053@70.27.1850.1053" timestamp="1587567125010" />
+    <state width="1827" height="279" key="GridCell.Tab.1.bottom" timestamp="1587567125007">
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
-    <state x="651" y="380" key="com.intellij.ide.util.TipDialog/70.27.1850.1053@70.27.1850.1053" timestamp="1578572042524" />
+    <state width="1827" height="279" key="GridCell.Tab.1.bottom/70.27.1850.1053@70.27.1850.1053" timestamp="1587567125007" />
+    <state width="1827" height="279" key="GridCell.Tab.1.center" timestamp="1587567125006">
+      <screen x="70" y="27" width="1850" height="1053" />
+    </state>
+    <state width="1827" height="279" key="GridCell.Tab.1.center/70.27.1850.1053@70.27.1850.1053" timestamp="1587567125006" />
+    <state width="1827" height="279" key="GridCell.Tab.1.left" timestamp="1587567125006">
+      <screen x="70" y="27" width="1850" height="1053" />
+    </state>
+    <state width="1827" height="279" key="GridCell.Tab.1.left/70.27.1850.1053@70.27.1850.1053" timestamp="1587567125006" />
+    <state width="1827" height="279" key="GridCell.Tab.1.right" timestamp="1587567125007">
+      <screen x="70" y="27" width="1850" height="1053" />
+    </state>
+    <state width="1827" height="279" key="GridCell.Tab.1.right/70.27.1850.1053@70.27.1850.1053" timestamp="1587567125007" />
+    <state x="486" y="179" width="1022" height="737" key="SettingsEditor" timestamp="1587567000256">
+      <screen x="70" y="27" width="1850" height="1053" />
+    </state>
+    <state x="486" y="179" width="1022" height="737" key="SettingsEditor/70.27.1850.1053@70.27.1850.1053" timestamp="1587567000256" />
     <state x="763" y="473" width="464" height="167" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1583279511536">
       <screen x="70" y="27" width="1850" height="1053" />
     </state>
     <state x="763" y="473" width="464" height="167" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/70.27.1850.1053@70.27.1850.1053" timestamp="1583279511536" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
