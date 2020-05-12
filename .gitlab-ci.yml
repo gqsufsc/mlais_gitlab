@@ -12,7 +12,8 @@ staging:
   stage: deploy
   script:
   - echo "Starting server" 
-  - python3 ./application.py
+  - cd servidor
+  - python3 application.py
   
   only:
   - dev
