@@ -13,7 +13,7 @@ staging:
   script:
   - echo "Starting server" 
   - cd servidor
-  - python3 application.py
+  - python3 application.py &
   
   only:
   - dev
