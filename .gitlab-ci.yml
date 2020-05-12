@@ -6,7 +6,7 @@ test:
   stage: test
   script:
   # TODO
-  echo "Running tests ..."
+  - echo "Running tests ..."
   
 staging:
   stage: deploy
