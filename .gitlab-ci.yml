@@ -1,0 +1,19 @@
+stages:
+  - test
+  - deploy
+  
+test:
+  stage: test
+  script:
+  # TODO
+  echo "Running tests"
+  
+staging:
+  stage: deploy
+  script:
+  - echo "Starting server" 
+  - python3 application.py
+  
+  only:
+  - dev
+ 
