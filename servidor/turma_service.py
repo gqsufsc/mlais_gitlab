@@ -4,17 +4,12 @@ import os
 import secrets
 import shutil
 
-from werkzeug.utils import secure_filename
-
 import utils
 import json
 
-from fastai.vision import Learner, ClassificationInterpretation
+from fastai.vision import Learner
 
 import model_service as ms
-
-
-# TODO:: Problema de concorrencia ao fazer o predict/upload de uma mesma turma e mesmo arquivo ao mesmo tempo
 
 
 def get_path() -> str :
@@ -27,6 +22,7 @@ def new_filename(extension : str) -> str :
         filename = secrets.token_hex(5) + '.' + extension
     return filename
 
+
 # Upload image byte[]
 def upload(turma: str, data : bytearray, extension : str) -> None :
     create_folders(turma) # Create folders if needed
@@ -34,6 +30,7 @@ def upload(turma: str, data : bytearray, extension : str) -> None :
     file.write(io.BytesIO(data).read())
     file.close()
     return
+
 
 # Load model from turma folder
 def load_learner(turma: str):
@@ -70,9 +67,9 @@ def train(turma: str) -> None:
     learner = load_learner(turma)
     ms.train(learner, get_path() + turma + '/upload/')
 
-    print('\tTraining finished')
+    # return ms.evaluate(learner)
+    return
 
-    return ms.evaluate(learner)
 
 # Cria uma nova turma
 def create_turma(model: str) -> None:
