@@ -14,7 +14,7 @@ ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 @flaskApp.route('/', methods=['GET'])
 def index():
     # Main page
-    return render_template('turmas.html')
+    return redirect(url_for('turmas'))
 
 
 @flaskApp.route('/delete/<token>', methods=['POST'])
