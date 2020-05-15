@@ -13,7 +13,7 @@ staging:
   script:
   - echo "Starting server" 
   - cd servidor
-  - sudo chmod 777 runserver.sh
+  - chmod 777 runserver.sh
   - sudo runserver.sh&
   
   only:
