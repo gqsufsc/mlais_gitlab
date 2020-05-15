@@ -39,6 +39,7 @@ def load_learner(path: str, name: str):
 
 def train(learner: Learner, imgPath: str) -> Learner:
     # TODO:: tests after upload changes
+
     tfms = get_transforms(do_flip=True, flip_vert=True)
     data = ImageDataBunch.from_folder(
         imgPath,
