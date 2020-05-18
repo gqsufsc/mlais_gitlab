@@ -11,10 +11,12 @@ test:
 staging:
   stage: deploy
   script:
-  - echo "Starting server" 
+  #- echo "Stopping OLD server"
+  #- curl localhost:5000/stopServer
+  - echo "Starting NEW server"
   - cd servidor
   - chmod 777 runserver.sh
-  - runserver.sh&
+  - ./runserver.sh&
   
   only:
   - dev
