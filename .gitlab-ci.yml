@@ -16,7 +16,7 @@ staging:
     - apk add --update curl && rm -rf /var/cache/apk/*
   script:
   - echo "Stopping OLD server"
-  - curl 150.162.6.91:5000/stopserver
+  - curl --fail 150.162.6.91:5000/stopserver
   - echo "Starting NEW server"
   - cd servidor
   - chmod 777 runserver.sh
