@@ -1,3 +1,5 @@
+image: docker:stable
+
 stages:
   - test
   - deploy
@@ -10,6 +12,8 @@ test:
   
 staging:
   stage: deploy
+  before_script:
+    - apk add --update curl && rm -rf /var/cache/apk/*
   script:
   - echo "Stopping OLD server"
   - curl localhost:5000/stopserver
