@@ -88,6 +88,11 @@ def predict(token : str) -> json :
         else :
             return jsonify(error)
     return jsonify({"error": "Not POST method"})
+    
+@flaskApp.route('/stopserver', methods=['GET'])
+def stopServer():
+    os.kill(os.getpid(), signal.SIGINT)
+    return jsonify({ "success": True, "message": "Server is shutting down..." })
 
 
 def verify(token : str, extension) -> json :
