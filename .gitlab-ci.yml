@@ -20,7 +20,7 @@ staging:
   - echo "Starting NEW server"
   - cd servidor
   - chmod 777 runserver.sh
-  - ./runserver.sh
+  - nohup ./runserver.sh &>/dev/null &
   
   only:
   - dev
