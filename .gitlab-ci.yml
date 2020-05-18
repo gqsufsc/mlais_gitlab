@@ -12,7 +12,6 @@ staging:
   stage: deploy
   script:
   - echo "Stopping OLD server"
-  - apt-get update; apt-get install curl
   - curl localhost:5000/stopserver
   #- echo "Starting NEW server"
   #- cd servidor
