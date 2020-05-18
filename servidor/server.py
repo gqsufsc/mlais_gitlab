@@ -91,7 +91,10 @@ def predict(token : str) -> json :
     
 @flaskApp.route('/stopserver', methods=['GET'])
 def stopServer():
-    os.kill(os.getpid(), signal.SIGINT)
+    func = request.environ.get('werkzeug.server.shutdown')
+    if func is None:
+        raise RuntimeError('Not running with the Werkzeug Server')
+    func()
     return jsonify({ "success": True, "message": "Server is shutting down..." })
 
 
