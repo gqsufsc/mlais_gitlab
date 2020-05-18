@@ -12,7 +12,7 @@ staging:
   stage: deploy
   script:
   - echo "Stopping OLD server"
-  - curl localhost:5000/stopServer
+  - sudo curl localhost:5000/stopserver
   #- echo "Starting NEW server"
   #- cd servidor
   #- chmod 777 runserver.sh
