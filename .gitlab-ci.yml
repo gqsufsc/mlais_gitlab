@@ -6,17 +6,17 @@ test:
   stage: test
   script:
   # TODO
-  - echo "Running tests .."
+  - echo "Running tests ..."
   
 staging:
   stage: deploy
   script:
-  #- echo "Stopping OLD server"
-  #- curl localhost:5000/stopServer
-  - echo "Starting NEW server"
-  - cd servidor
-  - chmod 777 runserver.sh
-  - ./runserver.sh &
+  - echo "Stopping OLD server"
+  - curl localhost:5000/stopServer
+  #- echo "Starting NEW server"
+  #- cd servidor
+  #- chmod 777 runserver.sh
+  #- ./runserver.sh &
   
   only:
   - dev
