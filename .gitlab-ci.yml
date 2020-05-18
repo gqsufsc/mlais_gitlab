@@ -17,10 +17,10 @@ staging:
   script:
   - echo "Stopping OLD server"
   - curl 150.162.6.91:5000/stopserver
-  #- echo "Starting NEW server"
-  #- cd servidor
-  #- chmod 777 runserver.sh
-  #- nohup ./runserver.sh &>/dev/null &
+  - echo "Starting NEW server"
+  - cd servidor
+  - chmod 777 runserver.sh
+  - nohup ./runserver.sh &>/dev/null &
   
   only:
   - dev
