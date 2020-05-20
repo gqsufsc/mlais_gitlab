@@ -7,8 +7,8 @@ import json
 
 from fastai.vision import Learner
 
-import servidor.utils as utils
-import servidor.model_service as ms
+import utils as utils
+import model_service as ms
 
 
 def get_path() -> str :

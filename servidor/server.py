@@ -4,7 +4,7 @@ import json
 from flask import Flask, render_template, request, jsonify, send_file, url_for
 from werkzeug.utils import redirect
 
-import servidor.turma_service as ts
+import turma_service as ts
 
 # Initializing the FLASK API
 flaskApp = Flask(__name__)
