@@ -99,16 +99,6 @@ def stopServer():
     func()
     return jsonify({ "success": True, "message": "Server is shutting down..." })
 
-
-@flaskApp.route('/stopserver', methods=['GET'])
-def stopServer():
-    func = request.environ.get('werkzeug.server.shutdown')
-    if func is None:
-        raise RuntimeError('Not running with the Werkzeug Server')
-    func()
-    return jsonify({ "success": True, "message": "Server is shutting down..." })
-
-
 def verify(token : str, extension) -> json :
     if not os.path.exists(ts.get_path() + token):
         return {"error": "invalid token."}
