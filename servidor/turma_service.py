@@ -3,12 +3,11 @@ import io
 import os
 import secrets
 import shutil
-
-import utils
 import json
 
 from fastai.vision import Learner
 
+import utils as utils
 import model_service as ms
 
 
