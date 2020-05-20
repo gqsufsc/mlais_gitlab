@@ -11,4 +11,4 @@ COPY * .
 
 EXPOSE 5000
 
-CMD ["python", "application.py", "serve"]
+CMD ["python", "servidor/application.py", "serve"]
