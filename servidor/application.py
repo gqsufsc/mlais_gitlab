@@ -1,4 +1,4 @@
-import server
+import servidor.server as server
 
 def main():
     # Running server

@@ -3,6 +3,8 @@ data/
 dataset-resized/
 dataset-resized.zip
 
+*.jpg
+
 .idea
 .idea/workspace.xml
 .ipynb_checkpoints/

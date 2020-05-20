@@ -3,13 +3,12 @@ import io
 import os
 import secrets
 import shutil
-
-import utils
 import json
 
 from fastai.vision import Learner
 
-import model_service as ms
+import servidor.utils as utils
+import servidor.model_service as ms
 
 
 def get_path() -> str :
