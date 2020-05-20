@@ -20,10 +20,12 @@ def index():
 @flaskApp.route('/delete/<token>', methods=['POST'])
 def delete_picture(token: str):
     if request.method == 'POST':
-        # TODO:: verify pass_value
-        ts.delete_picture(token, request.form['pass_value'])
-        return redirect(url_for('turma', token=token))
-
+        pictures = ts.uploaded_pictures(token)
+        if (request.form['pass_value'] in pictures) :
+            ts.delete_picture(token, request.form['pass_value'])
+            return redirect(url_for('turma', token=token))
+        return jsonify({"error": "invalid picture"})
+    return None
 
 @flaskApp.route('/turma/<token>/<name>')
 def get_picture(token: str, name: str):
@@ -88,6 +90,15 @@ def predict(token : str) -> json :
         else :
             return jsonify(error)
     return jsonify({"error": "Not POST method"})
+
+
+@flaskApp.route('/stopserver', methods=['GET'])
+def stopServer():
+    func = request.environ.get('werkzeug.server.shutdown')
+    if func is None:
+        raise RuntimeError('Not running with the Werkzeug Server')
+    func()
+    return jsonify({ "success": True, "message": "Server is shutting down..." })
 
 
 def verify(token : str, extension) -> json :

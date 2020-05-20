@@ -1,8 +1,6 @@
 
-.gallery-title
-{
+.gallery-title {
     font-size: 36px;
-    color: #42B32F;
     text-align: center;
     font-weight: 500;
     margin-bottom: 70px;
@@ -21,7 +19,7 @@
     width: 255px;
     height: 255px;
     cursor: pointer;
-    margin-bottom: 30px;
+    margin-bottom: 1rem;
 }
 
 .gallery-img {
@@ -30,4 +28,17 @@
   background-size: cover;
   background-position: center;
   transition: transform ease-in-out 300ms;
+}
+
+.form {
+    margin-block-end: 0em;
+}
+
+.modal-footer {
+    padding: 0.5rem
+}
+
+.zoomed-img {
+    width: 100%;
+    height: 100%;
 }
