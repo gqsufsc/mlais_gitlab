@@ -20,7 +20,7 @@
 <div class="container">
     <div class="row">
         {% for picture in uploaded %}
-                 <div class="col-lg-3">
+                 <div class="col-lg-3 gallery_margin">
                     <div id="gallery-img"  class="gallery_product" >
                         <img id="img-{{picture}}" alt="picture" src="{{ url_for('get_picture', token=turma, name=picture) }}"
                              class="gallery-img img-thumbnail"

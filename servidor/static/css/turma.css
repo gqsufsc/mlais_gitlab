@@ -19,7 +19,7 @@
     width: 255px;
     height: 255px;
     cursor: pointer;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
 }
 
 .gallery-img {
@@ -31,7 +31,11 @@
 }
 
 .form {
-    margin-block-end: 0em;
+    margin-block-end: 0rem;
+}
+
+.gallery_margin {
+    margin-block-end: 1rem;
 }
 
 .modal-footer {
