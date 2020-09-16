@@ -11,18 +11,22 @@
     <h1 class="gallery-title">Turma: {{ turma }}</h1>
 </div>
 
-<!--<form action="/train/{{ turma }}" method="get">-->
-<!--    <button class="btn btn-primary btn-lg " id="btn-train" type="submit">-->
-<!--        Treinar-->
-<!--    </button>-->
-<!--</form>-->
+<form action="/train/{{ turma }}" method="get">
+    <button class="btn btn-primary btn-lg " id="btn-train" type="submit">
+        Treinar
+    </button>
+</form>
 
 <div class="container">
+    {% for tag in dict %}
+    <div class="gallery col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <h4 class="gallery-title">{{ tag }}</h4>
+    <div>
     <div class="row">
-        {% for picture in uploaded %}
+        {% for picture in dict[tag] %}
                  <div class="col-lg-3 gallery_margin">
                     <div id="gallery-img"  class="gallery_product" >
-                        <img id="img-{{picture}}" alt="picture" src="{{ url_for('get_picture', token=turma, name=picture) }}"
+                        <img id="img-{{picture}}" alt="picture" src="{{ url_for('get_tagged_picture', token=turma, tag=tag, name=picture) }}"
                              class="gallery-img img-thumbnail"
                              data-toggle="modal" data-target="#zoom-modal" onclick="zoomModal(this)">
                     </div>
@@ -35,6 +39,7 @@
                  </div>
         {% endfor %}
     </div>
+    {% endfor %}
 </div>
 
     <!-- Modal for Pop Up-->

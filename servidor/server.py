@@ -27,15 +27,27 @@ def delete_picture(token: str):
         return jsonify({"error": "invalid picture"})
     return None
 
-@flaskApp.route('/turma/<token>/<name>')
+
+@flaskApp.route('/turma/<token>/tag/<name>')
 def get_picture(token: str, name: str):
     return send_file(ts.get_path() + token + '/upload/' + name, mimetype='image/jpg/png/jpeg', cache_timeout=0, )
 
 
+@flaskApp.route('/turma/<token>/<tag>/<name>')
+def get_tagged_picture(token: str, tag: str, name: str):
+    return send_file(ts.get_path() + token + '/upload/train/' + tag + '/' + name, mimetype='image/jpg/png/jpeg', cache_timeout=0)
+
+
 @flaskApp.route('/turma/<token>', methods=['GET'])
 def turma(token: str):
-    uploaded = ts.uploaded_pictures(token)
-    return render_template('turma.html', turma=token, uploaded=uploaded)
+    dict = ts.uploaded_pictures_dict(token)
+    return render_template('turma.html', turma=token, dict=dict)
+
+
+@flaskApp.route('/turma/<token>/<tag>', methods=['GET'])
+def tagTurma(token: str, tag: str):
+    uploaded = ts.uploaded_pictures_tag(token, tag)
+    return render_template('tagTurma.html', turma=token, uploaded=uploaded)
 
 
 @flaskApp.route('/turmas', methods=['GET'])

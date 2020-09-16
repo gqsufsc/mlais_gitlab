@@ -33,14 +33,12 @@ def upload(turma: str, data : bytearray, extension : str) -> None :
 
 # Load model from turma folder
 def load_learner(turma: str):
-    turmaModelPath = utils.find('*.pth', get_path() + turma).pop(0)
-    modelName = turmaModelPath[turmaModelPath.rindex('/') + 1: -4]
-    return ms.load_learner(get_path() + turma + '/', modelName)
+    return ms.load_learner(get_path() + turma + '/', model_name(turma))
 
 
 # Save model from turma folder
-def save_learner(token: str, learner: Learner):
-    ms.save_learner(get_path() + token + '/', 'model', learner)
+def save_learner(turma: str, learner: Learner):
+    ms.save_learner(get_path() + turma, model_name(turma), learner)
 
 
 # Predict a image classification using the model
@@ -58,13 +56,14 @@ def train(turma: str) -> None:
         print('invalid turma')
         return
 
-    if not os.path.exists(get_path() + turma + '/upload') \
-            or len([name for name in os.listdir(get_path() + turma + '/upload/') if os.path.isfile(os.path.join(get_path() + turma + '/upload/', name))]) == 0:
-        print('no images to train')
-        return
+    # if not os.path.exists(get_path() + turma + '/upload') \
+    #         or len([name for name in os.listdir(get_path() + turma + '/upload/') if os.path.isfile(os.path.join(get_path() + turma + '/upload/', name))]) == 0:
+    #     print('no images to train')
+    #     return
 
     learner = load_learner(turma)
     ms.train(learner, get_path() + turma + '/upload/')
+    # save_learner(turma, learner)
 
     # return ms.evaluate(learner)
     return
@@ -84,7 +83,7 @@ def create_turma(model: str) -> None:
     # Copy models
     src = ms.get_path() + model + '/' + model
     dst = get_path() + token + '/' + model
-    shutil.copyfile(src + '.pth', dst + '.pth')
+    shutil.copyfile(src + '.pkl', dst + '.pkl')
 
 
 def create_folders(turma: str) -> str:
@@ -92,6 +91,7 @@ def create_folders(turma: str) -> str:
     if not os.path.exists(path + 'upload/'):
         os.makedirs(path + 'upload/')
     return path
+
 
 ###############################################################################
 
@@ -107,17 +107,41 @@ def list_turmas() -> list:
 
 
 def list_classes(turma: str) -> list:
-    learner = load_learner(turma).data.classes
+    learner = load_learner(turma)
     return learner.data.classes
 
 
-def uploaded_pictures(turma: str) -> list:
+# def uploaded_pictures(turma: str) -> list:
+#     list = []
+#     path = get_path() + turma + '/upload/'
+#     for r, d, f in os.walk(path):
+#         for file in f:
+#             list.append(file)
+#     return list
+
+
+def uploaded_pictures_tag(turma: str, tag: str) -> list:
     list = []
-    path = get_path() + turma + '/upload/'
+    path = get_path() + turma + '/upload/train/' + tag
     for r, d, f in os.walk(path):
         for file in f:
             list.append(file)
     return list
+
+
+def uploaded_pictures_dict(turma: str) -> list:
+    tags = list_classes(turma)
+    pictures = {}
+
+    for tag in tags:
+        path = get_path() + turma + '/upload/train/' + tag
+        list = []
+        for r, d, f in os.walk(path):
+            for file in f:
+                list.append(file)
+        pictures[tag] = list
+
+    return pictures
 
 
 def delete_picture(turma: str, picture : str) -> None:
@@ -129,3 +153,8 @@ def delete_picture(turma: str, picture : str) -> None:
         print('exists :'+ path)
 
     return
+
+
+def model_name(turma: str) -> str :
+    turmaModelPath = utils.find('*.pkl', get_path() + turma).pop(0)
+    return turmaModelPath[turmaModelPath.rindex('/') + 1: -4]

@@ -1,0 +1,66 @@
+{% extends "turma.html" %}
+
+{% block content %}
+
+<div class="gallery col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <h1 class="gallery-title">Turma: {{ turma }}</h1>
+</div>
+
+<div class="container">
+    <div class="row">
+        {% for picture in uploaded %}
+                 <div class="col-lg-3 gallery_margin">
+                    <div id="gallery-img"  class="gallery_product" >
+                        <img id="img-{{picture}}" alt="picture" src="{{ url_for('get_picture', token=turma, name=picture) }}"
+                             class="gallery-img img-thumbnail"
+                             data-toggle="modal" data-target="#zoom-modal" onclick="zoomModal(this)">
+                    </div>
+                    <div class="btn-group d-flex justify-content-center" role="group">
+                        <button id="{{picture}}" class="btn btn-primary"
+                                data-toggle="modal" data-target="#confirm-modal" onclick="confirmModal(this)">
+                            Excluir
+                        </button> &nbsp;
+                    </div>
+                 </div>
+        {% endfor %}
+    </div>
+</div>
+
+    <!-- Modal for Pop Up-->
+    <div id="confirm-modal" class="modal" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-header align-items-center">
+            <h5 class="modal-title">Confirmar</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="closeModal()">
+             &times;
+            </button>
+          </div>
+          <div class="modal-body">
+              <p>Deseja mesmo excluir?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="closeModal()">
+                Cancelar
+            </button>
+            <form action="/delete/{{turma}}" method="post" class="form">
+                    <input name="pass_value" type="hidden" value="pass_value" id="hidden_input">
+                    <input class="btn btn-primary" type="submit" name="submit_button" value="Excluir">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Imagem  -->
+    <div id="zoom-modal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <img id="img" class="zoomed-img" onclick="zoomOut()">
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/turma.css') }}"/>
+
+{% endblock %}
