@@ -23,15 +23,19 @@
 }
 
 .gallery-img {
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  transition: transform ease-in-out 300ms;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: transform ease-in-out 300ms;
 }
 
 .form {
     margin-block-end: 0rem;
+}
+
+.buttons {
+    margin-bottom: 0rem;
 }
 
 .gallery_margin {
@@ -45,4 +49,32 @@
 .zoomed-img {
     width: 100%;
     height: 100%;
+}
+
+div#loading {
+    height: 2rem;
+    width: 100%
+    display: none;
+}
+
+div#loading-img {
+    height: 2rem;
+    width: 100%;
+    background: url(/static/gif/loading.gif) no-repeat;
+    background-size: 100% 75%;
+    cursor: wait;
+}
+
+table {
+    table-layout: fixed;
+}
+
+td {
+    height: 3rem;
+    width: 3rem;
+    text-align: center;
+}
+
+.card {
+    margin-bottom: 1rem;
 }

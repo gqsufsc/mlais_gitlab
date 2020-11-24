@@ -1,37 +1,66 @@
 {% extends "base.html" %} {% block content %}
 
+<head>
+    <link href="{{ url_for('static', filename='css/turmas.css') }}" rel="stylesheet">
+</head>
+
 <h2 id="turma-name" >Turmas</h2>
 
-
-<!--<table class="table">-->
-<!--  <thead>-->
-<!--    <tr>-->
-<!--      <th scope="col">#</th>-->
-<!--      <th scope="col">First</th>-->
-<!--      <th scope="col">Last</th>-->
-<!--      <th scope="col">Handle</th>-->
-<!--    </tr>-->
-<!--  </thead>-->
-<!--  <tbody>-->
-<!--    <tr>-->
-<!--      <th scope="row">1</th>-->
-<!--      <td>Mark</td>-->
-<!--      <td>Otto</td>-->
-<!--      <td>@mdo</td>-->
-<!--    </tr>-->
-<!--  </tbody>>-->
-<!--</table>>-->
-
 <div>
-    {% for turma in turmas %}
-        <div>
-            <form action="{{ url_for('turma', token=turma) }}" >
-                <button class="btn btn-primary btn-lg " id="btn-turma" type="submit">
-                    {{ turma }}
-                </button>
-            </form>
-        </div>
-    {% endfor %}
+    <table class="table">
+        <tr>
+            <div class="row ">
+                <div class="col d-flex justify-content-end">
+                    <form action="{{ url_for('cadastrar') }}" >
+                        <button class="btn btn-primary btn-lg justify-self-end" id="btn-cadastrar" type="submit">
+                            Cadastrar
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </tr>
+            <th scope="col">Código</th>
+            <th scope="col">Descrição</th>
+            <th scope="col">Classes</th>
+            <th scope="col"></th>
+        {% for turma in turmas %}
+            <tr>
+                <td>
+                    <div class="align-self-center">
+                        {{ turma }}
+                    </div>
+                </td>
+                <td>
+                    {{ turmas[turma]['descricao'] }}
+                </td>
+                <td>
+                    <div class="align-self-center">
+                        <dl>
+                            {% for classe in turmas[turma]['classes'] %}
+                                <dt>{{ classe }}</dt>
+                            {% endfor %}
+                        </dl>
+                    </div>
+                </td>
+                <td>
+                    <div class="row align-items-center justify-content-end">
+                        <button type="button" class="btn btn-outline-primary" onclick="window.location.href='{{ url_for('turma', token=turma) }}';">
+                            Visualizar
+                        </button>
+                        <button type="button" class="btn btn-outline-primary" onclick="window.location.href='{{ url_for('editar', token=turma) }}';">
+                            Editar
+                        </button>
+                        <button type="button" class="btn btn-outline-danger" onclick="window.location.href='{{ url_for('excluir', token=turma) }}';">
+                            Excluir
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+        {% if not turmas %}
+            <tr><td>Nenhuma turma cadastrada.</td></tr>
+        {% endif %}
+    </table>
 </div>
 
 {% endblock %}

@@ -15,3 +15,8 @@ function zoomModal(obj) {
   document.getElementById("img").src = obj.src;
   $('#zoom-modal').show();
 }
+
+function loading(){
+    $("#loading").show();
+    $("#traincontent").hide();
+}

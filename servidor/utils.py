@@ -10,6 +10,7 @@ def find(pattern, path):
                 result.append(os.path.join(root, name))
     return result
 
+
 # return all matches
 def find_all(name, path):
     result = []
@@ -17,6 +18,7 @@ def find_all(name, path):
         if name in files:
             result.append(os.path.join(root, name))
     return result
+
 
 # return first match
 def find_first(name, path):

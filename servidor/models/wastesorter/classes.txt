@@ -1,0 +1,6 @@
+cardboard papelão
+glass vidro
+metal metal
+paper papel
+plastic plastico
+trash lixo

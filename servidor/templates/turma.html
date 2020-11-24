@@ -3,7 +3,6 @@
 {% block content %}
 
 <head>
-
     <link href="{{ url_for('static', filename='css/turma.css') }}" rel="stylesheet">
 </head>
 
@@ -11,16 +10,67 @@
     <h1 class="gallery-title">Turma: {{ turma }}</h1>
 </div>
 
-<form action="/train/{{ turma }}" method="get">
-    <button class="btn btn-primary btn-lg " id="btn-train" type="submit">
-        Treinar
-    </button>
-</form>
+{% if error %}
+<div class="card">
+    <div class ="card-body bg-warning text-black" >
+        {% if error == 1 %}
+            É necessário ao menos 10 imagens no total.
+        {% endif %}
+        {% if error == 2 %}
+            É necessário ao menos 3 imagens em cada classe.
+        {% endif %}
+        {% if error == 3 %}
+            É necessário ao menos 3 imagens em cada classe e 10 imagens no total.
+        {% endif %}
+    </div>
+</div>
+{% endif %}
+
+<div id="training">
+    <div id="loading" class="row" style="display:none;">
+        <div class="col-md-auto">Aguarde o treinamento: </div>
+        <div class="col" id="loading-img"><span></span></div>
+    </div>
+    <div id="traincontent">
+        <form action="/train/{{ turma }}" method="GET">
+            <label for="epoch">Epoch: </label>
+            <input name="epoch" value="1" id="epoch" type="number">
+            <button class="btn btn-primary btn-lg btn-block" id="btn-train" type="submit" onclick="loading();" >
+                Treinar
+            </button>
+            {% if evaluation %}
+                Matrix de confusão:
+                <table style="border: 1px solid black">
+                    <tr>
+                        <td></td>
+                        {% for c in dict %}
+                            <td>{{translation[c]}}</td>
+                        {% endfor %}
+                    </tr>
+                        {% for x in evaluation %}
+                        <tr>
+                            <td>{{ translation[(dict.keys() | list )[x]] }}</td>
+                            {% for y in evaluation[x] %}
+                                {% set color = 255 - 255 * evaluation[x][y] %}
+                                <td style="background-color: rgb({{color}}, {{color}}, 255 );">{{ evaluation[x][y] }}</td>
+                            {% endfor %}
+                        </tr>
+                        {% endfor %}
+                </table>
+            {% endif %}
+        </form>
+    </div>
+    <div id="excluir">
+        <button class="btn btn-outline-danger btn-block" id="btn-clean" onclick="window.location.href='{{ url_for('clean', token=turma) }}';">
+            Excluir imagens
+        </button>
+    </div>
+</div>
 
 <div class="container">
     {% for tag in dict %}
     <div class="gallery col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <h4 class="gallery-title">{{ tag }}</h4>
+        <h4 class="gallery-title">{{ translation[tag] }}</h4>
     <div>
     <div class="row">
         {% for picture in dict[tag] %}
@@ -30,8 +80,18 @@
                              class="gallery-img img-thumbnail"
                              data-toggle="modal" data-target="#zoom-modal" onclick="zoomModal(this)">
                     </div>
-                    <div class="btn-group d-flex justify-content-center" role="group">
-                        <button id="{{picture}}" class="btn btn-primary"
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <label class="input-group-text" for="select-{{picture}}">Mover para</label>
+                      </div>
+                            <select id="select-{{picture}}" class="custom-select" onchange ="if (this.value)window.location.href=this.value">
+                                <option selected></option>
+                                {% for tag in dict %}
+                                    <option value="{{ url_for('move_picture_to_tag', token=turma, picture=picture, tag=tag ) }}">{{translation[tag]}} </option>
+                                {% endfor %}
+                            </select>
+
+                        <button id="{{picture}}" class="btn btn-outline-danger"
                                 data-toggle="modal" data-target="#confirm-modal" onclick="confirmModal(this)">
                             Excluir
                         </button> &nbsp;
@@ -77,6 +137,6 @@
         </div>
     </div>
 
-    <script type="text/javascript" src="{{ url_for('static', filename='js/turma.css') }}"/>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/turma.js') }}"/>
 
 {% endblock %}
